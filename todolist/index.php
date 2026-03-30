@@ -14,9 +14,19 @@
                    class="flex-1 border p-2 rounded">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
         </form>
-
-        <ul class="mt-6">
-            </ul>
+<?php include 'db.php'; ?>
+<ul class="mt-6 space-y-2">
+    <?php
+    // Fetch all tasks from the database
+    $stmt = $conn->query("SELECT * FROM tasks ORDER BY created_at DESC");
+    while ($row = $stmt->fetch()) {
+        echo "<li class='flex justify-between items-center bg-gray-50 p-3 rounded border'>";
+        echo "<span>" . htmlspecialchars($row['task_name']) . "</span>";
+        // We will add a delete button here in the next step
+        echo "</li>";
+    }
+    ?>
+</ul>
     </div>
 </body>
 </html>
