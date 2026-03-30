@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tasks.views import index # Import your view
+from tasks import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'), # This makes the home page your todo list
+    path('', views.index, name='index'),   
+    path('delete/<int:pk>/', views.delete_task, name='delete_task'),
+    path('edit/<int:pk>/', views.edit_task, name='edit_task'), # New Line
 ]
