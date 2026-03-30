@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from tasks.views import index # Import your view
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'), # This makes the home page your todo list
 ]
