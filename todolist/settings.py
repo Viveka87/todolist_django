@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tasks',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,13 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todolist_django',        # The name of the database you created in phpMyAdmin
+        'USER': 'root',           # Your MySQL username (default is root)
+        'PASSWORD': 'test@123',           # Your MySQL password (default is empty for XAMPP)
+        'HOST': '127.0.0.1',      # Or 'localhost'
+        'PORT': '3306',
+        
     }
 }
 
