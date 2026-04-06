@@ -1,0 +1,49 @@
+{% extends 'tasks/base.html' %} 
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <h1 class="mb-4 text-center">Edit Task</h1>
+        
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="tasktitle" class="form-label fw-bold">Task Title</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-pen-nib"></i></span>
+                            <input type="text" name="title" class="form-control" value="{{ notes_res.title }}" id="tasktitle" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="taskstatus" class="form-label fw-bold">Update Status</label>
+                        <select name="completed" class="form-select" id="taskstatus">
+                             <option value="not_started" {% if notes_res.completed == 'not_started' %} selected {% endif %}>Not Yet Started</option>
+                             <option value="started" {% if notes_res.completed == 'started' %} selected {% endif %}>Started</option>
+                             <option value="progress" {% if notes_res.completed == 'progress' %} selected {% endif %}>In Progress</option>
+                             <option value="pending" {% if notes_res.completed == 'pending' %} selected {% endif %}>Pending</option>
+                             <option value="completed" {% if notes_res.completed == 'completed' %} selected {% endif %}>Completed</option>
+                        </select>       
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <button class="btn btn-success w-100 py-2" type="submit">
+                                <i class="fa-solid fa-check-double me-2"></i>Update Task
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'index' %}" class="btn btn-outline-secondary w-100 py-2">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
